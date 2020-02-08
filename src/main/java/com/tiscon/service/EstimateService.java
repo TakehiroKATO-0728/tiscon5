@@ -25,6 +25,9 @@ public class EstimateService {
     /** 引越しする距離の1 kmあたりの料金[円] */
     private static final int PRICE_PER_DISTANCE = 100;
 
+    /**一番大きなトラックのID */
+    private static final int BIGGEST_TRUCK_ID = 2;
+
     private final EstimateDao estimateDAO;
 
     /**
@@ -82,8 +85,16 @@ public class EstimateService {
                 + getBoxForPackage(dto.getBicycle(), PackageType.BICYCLE)
                 + getBoxForPackage(dto.getWashingMachine(), PackageType.WASHING_MACHINE);
 
+        //トラックが2台以上になる場合の処理
+        int truckCapacity = estimateDAO.getCapacityPerTruck(BIGGEST_TRUCK_ID);
+        int truckNum = boxes / truckCapacity;
+        boxes = boxes % truckCapacity;
+
         // 箱に応じてトラックの種類が変わり、それに応じて料金が変わるためトラック料金を算出する。
         int pricePerTruck = estimateDAO.getPricePerTruck(boxes);
+        if( boxes == 0 ) {
+            pricePerTruck = 0;
+        }
 
         // オプションサービスの料金を算出する。
         int priceForOptionalService = 0;
@@ -92,7 +103,7 @@ public class EstimateService {
             priceForOptionalService = estimateDAO.getPricePerOptionalService(OptionalServiceType.WASHING_MACHINE.getCode());
         }
 
-        return priceForDistance + pricePerTruck + priceForOptionalService;
+        return priceForDistance + pricePerTruck + priceForOptionalService + truckNum * estimateDAO.getPricePerTruck(truckCapacity);
     }
 
     /**
