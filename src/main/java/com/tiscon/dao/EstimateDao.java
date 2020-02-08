@@ -123,6 +123,19 @@ public class EstimateDao {
     }
 
     /**
+     * 一番大きなトラックの最大積載数を取得する。
+     *
+     * @param truckId トラックのId
+     * @return 載せられる段ボール数[箱]
+     */
+    public int getCapacityPerTruck(int truckId) {
+        String sql = "SELECT MAX_BOX FROM TRUCK_CAPACITY WHERE TRUCK_ID = :truckId ";
+
+        SqlParameterSource paramSource = new MapSqlParameterSource("truckId", truckId);
+        return parameterJdbcTemplate.queryForObject(sql, paramSource, Integer.class);
+    }
+
+    /**
      * 段ボール数に応じたトラック料金を取得する。
      *
      * @param boxNum 総段ボール数
