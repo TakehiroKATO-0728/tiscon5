@@ -23,29 +23,29 @@
         <tbody>
         <tr>
           <th th:if="${#fields.hasErrors('customerName')}" style="width: 40%" bgcolor="#ffb6c1">氏名
-            <font color="red" size="2" th:each="err : ${#fields.errors('customerName')}" th:text="${err}"></font>
+            <br><font color="red" size="2" th:each="err : ${#fields.errors('customerName')}" th:text="${err}"></font>
           </th>
           <th th:unless="${#fields.hasErrors('customerName')}" style="width: 40%">氏名</th>
           <td><span th:text="*{customerName}"></span></td>
           <input type="hidden" name="customerName" id="customerName" th:value="*{customerName}"/>
         </tr>
         <tr>
-          <th th:if="${#fields.hasErrors('tel')}" style="width: 40%" bgcolor="#ffb6c1">連絡先TEL
-            <font color="red" size="2" th:each="err : ${#fields.errors('tel')}" th:text="${err}"></font></th>
-          <th th:unless="${#fields.hasErrors('tel')}" style="width: 40%">連絡先TEL</th>
+          <th th:if="${#fields.hasErrors('tel')}" style="width: 40%" bgcolor="#ffb6c1">連絡先TEL（ハイフンなし 例:09012345678）
+            <br><font color="red" size="2" th:each="err : ${#fields.errors('tel')}" th:text="${err}"></font></th>
+          <th th:unless="${#fields.hasErrors('tel')}" style="width: 40%">連絡先TEL（ハイフンなし 例:09012345678）</th>
           <td><span th:text="*{tel}"></span></td>
           <input type="hidden" name="tel" id="tel" th:value="*{tel}"/>
         </tr>
         <tr>
           <th th:if="${#fields.hasErrors('email')}" style="width: 40%" bgcolor="#ffb6c1">連作先メールアドレス
-            <font color="red" size="2" th:each="err : ${#fields.errors('email')}" th:text="${err}"></font></th>
+            <br><font color="red" size="2" th:each="err : ${#fields.errors('email')}" th:text="${err}"></font></th>
           <th th:unless="${#fields.hasErrors('email')}" style="width: 40%">連作先メールアドレス</th>
           <td><span th:text="*{email}"></span></td>
           <input type="hidden" name="email" id="email" th:value="*{email}"/>
         </tr>
         <tr>
           <th th:if="${#fields.hasErrors('oldPrefectureId')}" style="width: 40%" bgcolor="#ffb6c1">転居元住所（都道府県）
-            <font color="red" size="2" th:each="err : ${#fields.errors('oldPrefectureId')}" th:text="${err}"></font></th>
+            <br><font color="red" size="2" th:each="err : ${#fields.errors('oldPrefectureId')}" th:text="${err}"></font></th>
           <th th:unless="${#fields.hasErrors('oldPrefectureId')}" style="width: 40%">転居元住所（都道府県）</th>
           <td>
             <span th:each="prefecture : ${prefectures}" th:text="${prefecture.prefectureName}" th:if="${prefecture.prefectureId}==*{oldPrefectureId}">東京</span>
@@ -54,14 +54,14 @@
         </tr>
         <tr>
           <th th:if="${#fields.hasErrors('oldAddress')}" style="width: 40%" bgcolor="#ffb6c1">転居元住所（市区町村以下）
-            <font color="red" size="2" th:each="err : ${#fields.errors('oldAddress')}" th:text="${err}"></font></th>
+            <br><font color="red" size="2" th:each="err : ${#fields.errors('oldAddress')}" th:text="${err}"></font></th>
           <th th:unless="${#fields.hasErrors('oldAddress')}" style="width: 40%">転居元住所（市区町村以下）</th>
           <td><span th:text="*{oldAddress}"></span></td>
           <input type="hidden" name="oldAddress" id="oldAddress" th:value="*{oldAddress}"/>
         </tr>
         <tr>
           <th th:if="${#fields.hasErrors('newPrefectureId')}" style="width: 40%" bgcolor="#ffb6c1">転居先住所（都道府県）
-            <font color="red" size="2" th:each="err : ${#fields.errors('newPrefectureId')}" th:text="${err}"></font></th>
+            <br><font color="red" size="2" th:each="err : ${#fields.errors('newPrefectureId')}" th:text="${err}"></font></th>
           <th th:unless="${#fields.hasErrors('newPrefectureId')}" style="width: 40%">転居先住所（都道府県）</th>
           <td>
             <span th:each="prefecture : ${prefectures}" th:text="${prefecture.prefectureName}" th:if="${prefecture.prefectureId}==*{newPrefectureId}">大阪</span>
@@ -70,7 +70,7 @@
         </tr>
         <tr>
           <th th:if="${#fields.hasErrors('newAddress')}" style="width: 40%" bgcolor="#ffb6c1">転居先住所（市区町村以下）
-            <font color="red" size="2" th:each="err : ${#fields.errors('newAddress')}" th:text="${err}"></font></th>
+            <br><font color="red" size="2" th:each="err : ${#fields.errors('newAddress')}" th:text="${err}"></font></th>
           <th th:unless="${#fields.hasErrors('newAddress')}" style="width: 40%">転居先住所（市区町村以下）</th>
           <td><span th:text="*{newAddress}"></span></td>
           <input type="hidden" name="newAddress" id="newAddress" th:value="*{newAddress}"/>
@@ -84,35 +84,35 @@
         <tbody>
         <tr>
           <th th:if="${#fields.hasErrors('box')}" style="width: 40%" bgcolor="#ffb6c1">段ボールの個数
-            <font color="red" size="2" th:each="err : ${#fields.errors('box')}" th:text="${err}"></font></th>
+            <br><font color="red" size="2" th:each="err : ${#fields.errors('box')}" th:text="${err}"></font></th>
           <th th:unless="${#fields.hasErrors('box')}" style="width: 40%">段ボールの個数</th>
           <td><span th:text="*{box}"></span></td>
           <input type="hidden" name="box" id="box" th:value="*{box}"/>
         </tr>
         <tr>
           <th th:if="${#fields.hasErrors('bed')}" style="width: 40%" bgcolor="#ffb6c1">ベッドの個数
-            <font color="red" size="2" th:each="err : ${#fields.errors('bed')}" th:text="${err}"></font></th>
+            <br><font color="red" size="2" th:each="err : ${#fields.errors('bed')}" th:text="${err}"></font></th>
           <th th:unless="${#fields.hasErrors('bed')}" style="width: 40%">ベッドの個数</th>
           <td><span th:text="*{bed}"></span></td>
           <input type="hidden" name="bed" id="bed" th:value="*{bed}"/>
         </tr>
         <tr>
           <th th:if="${#fields.hasErrors('bicycle')}" style="width: 40%" bgcolor="#ffb6c1">自転車の個数
-            <font color="red" size="2" th:each="err : ${#fields.errors('bicycle')}" th:text="${err}"></font></th>
+            <br><font color="red" size="2" th:each="err : ${#fields.errors('bicycle')}" th:text="${err}"></font></th>
           <th th:unless="${#fields.hasErrors('bicycle')}" style="width: 40%">自転車の個数</th>
           <td><span th:text="*{bicycle}"></span></td>
           <input type="hidden" name="bicycle" id="bicycle" th:value="*{bicycle}"/>
         </tr>
         <tr>
           <th th:if="${#fields.hasErrors('washingMachine')}" style="width: 40%" bgcolor="#ffb6c1">洗濯機の個数
-            <font color="red" size="2" th:each="err : ${#fields.errors('washingMachine')}" th:text="${err}"></font></th>
+            <br><font color="red" size="2" th:each="err : ${#fields.errors('washingMachine')}" th:text="${err}"></font></th>
           <th th:unless="${#fields.hasErrors('washingMachine')}" style="width: 40%">洗濯機の個数</th>
           <td><span th:text="*{washingMachine}"></span></td>
           <input type="hidden" name="washingMachine" id="washingMachine" th:value="*{washingMachine}"/>
         </tr>
         <tr>
           <th th:if="${#fields.hasErrors('washingMachineInstallation')}" style="width: 40%" bgcolor="#ffb6c1">洗濯機の設置工事申し込み
-            <font color="red" size="2" th:each="err : ${#fields.errors('washingMachineInstallation')}" th:text="${err}"></font></th>
+            <br><font color="red" size="2" th:each="err : ${#fields.errors('washingMachineInstallation')}" th:text="${err}"></font></th>
           <th th:unless="${#fields.hasErrors('washingMachineInstallation')}" style="width: 40%">洗濯機の設置工事申し込み</th>
           <td><span th:text="*{washingMachineInstallation} ? 'あり' : 'なし'"></span></td>
           <input type="hidden" name="washingMachineInstallation" id="washingMachineInstallation" th:value="*{washingMachineInstallation}"/>
