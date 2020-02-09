@@ -1,6 +1,7 @@
 package com.tiscon.controller;
 
 import com.tiscon.dao.EstimateDao;
+import com.tiscon.domain.Prefecture;
 import com.tiscon.dto.UserOrderDto;
 import com.tiscon.form.UserOrderForm;
 import com.tiscon.service.EstimateService;
@@ -11,6 +12,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 引越し見積もりのコントローラークラス。
@@ -52,7 +56,7 @@ public class EstimateController {
             model.addAttribute("userOrderForm", new UserOrderForm());
         }
 
-        model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
+        model.addAttribute("prefectures", getAllPrefectures());
         return "input";
     }
 
@@ -77,7 +81,7 @@ public class EstimateController {
     @PostMapping(value = "submit", params = "confirm")
     String confirm(UserOrderForm userOrderForm, Model model) {
 
-        model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
+        model.addAttribute("prefectures", getAllPrefectures());
         model.addAttribute("userOrderForm", userOrderForm);
         return "confirm";
     }
@@ -91,7 +95,7 @@ public class EstimateController {
      */
     @PostMapping(value = "result", params = "backToInput")
     String backToInput(UserOrderForm userOrderForm, Model model) {
-        model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
+        model.addAttribute("prefectures", getAllPrefectures());
         model.addAttribute("userOrderForm", userOrderForm);
         return "input";
     }
@@ -105,7 +109,7 @@ public class EstimateController {
      */
     @PostMapping(value = "order", params = "backToConfirm")
     String backToConfirm(UserOrderForm userOrderForm, Model model) {
-        model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
+        model.addAttribute("prefectures", getAllPrefectures());
         model.addAttribute("userOrderForm", userOrderForm);
         return "confirm";
     }
@@ -121,8 +125,7 @@ public class EstimateController {
     @PostMapping(value = "result", params = "calculation")
     String calculation(@Validated UserOrderForm userOrderForm, BindingResult result, Model model) {
         if (result.hasErrors()) {
-
-            model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
+            model.addAttribute("prefectures", getAllPrefectures());
             model.addAttribute("userOrderForm", userOrderForm);
             return "confirm";
         }
@@ -132,12 +135,20 @@ public class EstimateController {
         BeanUtils.copyProperties(userOrderForm, dto);
         Integer price = estimateService.getPrice(dto);
 
-        model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
+        model.addAttribute("prefectures", getAllPrefectures());
         model.addAttribute("userOrderForm", userOrderForm);
         model.addAttribute("price", price);
         return "result";
     }
-
+    private List<Prefecture> getAllPrefectures() {
+        ArrayList<Prefecture> list = new ArrayList<>();
+        Prefecture prefecture = new Prefecture();
+        prefecture.setPrefectureId("");
+        prefecture.setPrefectureName("選択してください");
+        list.add(prefecture);
+        list.addAll(estimateDAO.getAllPrefectures());
+        return list;
+    }
     /**
      * 申し込み完了画面に遷移する。
      *
@@ -150,7 +161,7 @@ public class EstimateController {
     String complete(@Validated UserOrderForm userOrderForm, BindingResult result, Model model) {
         if (result.hasErrors()) {
 
-            model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
+            model.addAttribute("prefectures", getAllPrefectures());
             model.addAttribute("userOrderForm", userOrderForm);
             return "confirm";
         }
