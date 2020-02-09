@@ -41,12 +41,11 @@ public class EstimateDao {
         String sql = "SELECT CUSTOMER_ID FROM CUSTOMER WHERE "
                 +"OLD_PREFECTURE_ID = " + customer.getOldPrefectureId() + " AND "
                 +"NEW_PREFECTURE_ID = " + customer.getNewPrefectureId() + " AND "
-                //+"CUSTOMER_NAME = \'" + customer.getCustomerName() + "\' AND "
+                +"CUSTOMER_NAME = \'" + customer.getCustomerName() + "\' AND "
                 +"TEL = " + customer.getTel() + " AND "
-                +"EMAIL = \'" + customer.getEmail() + "\'";//+ " AND "
-                //+"OLD_ADDRESS = \'" + customer.getOldAddress() + " AND "
-                //+"NEW_ADDRESS = \'" + customer.getNewAddress() +"\'";
-                //+ " OLD_PREFECTURE_ID = :oldPrefectureId AND NEW_PREFECTURE_ID = :newPrefectureId AND CUSTOMER_NAME = :customerName AND TEL = :tel AND EMAIL = :email AND OLD_ADDRESS = :oldAddress AND NEW_ADDRESS = :newAddress)";
+                +"EMAIL = \'" + customer.getEmail() + "\'"+ " AND "
+                +"OLD_ADDRESS = \'" + customer.getOldAddress() + "\' AND "
+                +"NEW_ADDRESS = \'" + customer.getNewAddress() +"\'";
         SqlParameterSource paramSource = new MapSqlParameterSource();
         //ここから削除
         int sameId = 0;
