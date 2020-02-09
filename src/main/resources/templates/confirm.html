@@ -45,7 +45,7 @@
         </tr>
         <tr>
           <th th:if="${#fields.hasErrors('oldPrefectureId')}" style="width: 40%" bgcolor="#ffb6c1">転居元住所（都道府県）
-            <font color="red" size="2" th:each="err : ${#fields.errors('oldPrefectureId')}" th:text="${err}"></font></th>
+            <font color="red" size="2" th:each="err : ${#fields.errors('oldPrefectureId')}" th:text="都道府県を選択してください"></font></th>
           <th th:unless="${#fields.hasErrors('oldPrefectureId')}" style="width: 40%">転居元住所（都道府県）</th>
           <td>
             <span th:each="prefecture : ${prefectures}" th:text="${prefecture.prefectureName}" th:if="${prefecture.prefectureId}==*{oldPrefectureId}">東京</span>
@@ -61,7 +61,7 @@
         </tr>
         <tr>
           <th th:if="${#fields.hasErrors('newPrefectureId')}" style="width: 40%" bgcolor="#ffb6c1">転居先住所（都道府県）
-            <font color="red" size="2" th:each="err : ${#fields.errors('newPrefectureId')}" th:text="${err}"></font></th>
+            <font color="red" size="2" th:each="err : ${#fields.errors('newPrefectureId')}" th:text="都道府県を選択してください"></font></th>
           <th th:unless="${#fields.hasErrors('newPrefectureId')}" style="width: 40%">転居先住所（都道府県）</th>
           <td>
             <span th:each="prefecture : ${prefectures}" th:text="${prefecture.prefectureName}" th:if="${prefecture.prefectureId}==*{newPrefectureId}">大阪</span>
@@ -111,8 +111,7 @@
           <input type="hidden" name="washingMachine" id="washingMachine" th:value="*{washingMachine}"/>
         </tr>
         <tr>
-          <th th:if="${#fields.hasErrors('washingMachineInstallation')}" style="width: 40%" bgcolor="#ffb6c1">洗濯機の設置工事申し込み
-            <font color="red" size="2" th:each="err : ${#fields.errors('washingMachineInstallation')}" th:text="${err}"></font></th>
+          <th th:if="${#fields.hasErrors('washingMachineInstallation')}" style="width: 40%" bgcolor="#ffb6c1">洗濯機の設置工事申し込み</th>
           <th th:unless="${#fields.hasErrors('washingMachineInstallation')}" style="width: 40%">洗濯機の設置工事申し込み</th>
           <td><span th:text="*{washingMachineInstallation} ? 'あり' : 'なし'"></span></td>
           <input type="hidden" name="washingMachineInstallation" id="washingMachineInstallation" th:value="*{washingMachineInstallation}"/>
