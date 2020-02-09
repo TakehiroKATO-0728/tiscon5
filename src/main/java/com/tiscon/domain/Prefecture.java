@@ -3,15 +3,15 @@ package com.tiscon.domain;
 import java.io.Serializable;
 
 public class Prefecture implements Serializable {
-    private String prefectureId;
+    private Integer prefectureId;
 
     private String prefectureName;
 
-    public String getPrefectureId() {
+    public Integer getPrefectureId() {
         return prefectureId;
     }
 
-    public void setPrefectureId(String prefectureId) {
+    public void setPrefectureId(Integer prefectureId) {
         this.prefectureId = prefectureId;
     }
 
