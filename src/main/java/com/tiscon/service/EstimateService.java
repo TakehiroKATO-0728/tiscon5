@@ -48,6 +48,10 @@ public class EstimateService {
     public void registerOrder(UserOrderDto dto) {
         Customer customer = new Customer();
         BeanUtils.copyProperties(dto, customer);
+
+        //重複するデータを削除します。
+        estimateDAO.deleteCustomer(customer);
+        //データを挿入します。
         estimateDAO.insertCustomer(customer);
 
         if (dto.getWashingMachineInstallation()) {

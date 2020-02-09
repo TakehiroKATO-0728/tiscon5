@@ -31,6 +31,43 @@ public class EstimateDao {
     }
 
     /**
+     * 重複している顧客情報をテーブルから削除する。
+     *
+     * @param customer 顧客情報
+     */
+    public void deleteCustomer(Customer customer) {
+
+        //まずは重複を検索
+        String sql = "SELECT CUSTOMER_ID FROM CUSTOMER WHERE "
+                +"OLD_PREFECTURE_ID = " + customer.getOldPrefectureId() + " AND "
+                +"NEW_PREFECTURE_ID = " + customer.getNewPrefectureId() + " AND "
+                //+"CUSTOMER_NAME = \'" + customer.getCustomerName() + "\' AND "
+                +"TEL = " + customer.getTel() + " AND "
+                +"EMAIL = \'" + customer.getEmail() + "\'";//+ " AND "
+                //+"OLD_ADDRESS = \'" + customer.getOldAddress() + " AND "
+                //+"NEW_ADDRESS = \'" + customer.getNewAddress() +"\'";
+                //+ " OLD_PREFECTURE_ID = :oldPrefectureId AND NEW_PREFECTURE_ID = :newPrefectureId AND CUSTOMER_NAME = :customerName AND TEL = :tel AND EMAIL = :email AND OLD_ADDRESS = :oldAddress AND NEW_ADDRESS = :newAddress)";
+        SqlParameterSource paramSource = new MapSqlParameterSource();
+        //ここから削除
+        int sameId = 0;
+        try{
+            sameId = parameterJdbcTemplate.queryForObject(sql, paramSource, Integer.class);
+        } catch(IncorrectResultSizeDataAccessException e){
+            //sameId = 0;
+        }
+        if(sameId != 0) {
+                sql = "DELETE FROM CUSTOMER_PACKAGE WHERE CUSTOMER_ID = " + sameId;
+                KeyHolder keyHolder = new GeneratedKeyHolder();
+                parameterJdbcTemplate.update(sql, new BeanPropertySqlParameterSource(customer), keyHolder);
+                sql = "DELETE FROM CUSTOMER_OPTION_SERVICE WHERE CUSTOMER_ID = " + sameId;
+                parameterJdbcTemplate.update(sql, new BeanPropertySqlParameterSource(customer), keyHolder);
+                sql = "DELETE FROM CUSTOMER WHERE CUSTOMER_ID = " + sameId;
+                parameterJdbcTemplate.update(sql, new BeanPropertySqlParameterSource(customer), keyHolder);
+        }
+    }
+
+
+    /**
      * 顧客テーブルに登録する。
      *
      * @param customer 顧客情報
