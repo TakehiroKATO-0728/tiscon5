@@ -3,25 +3,25 @@ package com.tiscon.domain;
 import java.io.Serializable;
 
 public class PrefectureDistance implements Serializable {
-    private String prefectureIdFrom;
+    private Integer prefectureIdFrom;
 
-    private String prefectureIdTo;
+    private Integer prefectureIdTo;
 
     private double distance;
 
-    public String getPrefectureIdFrom() {
+    public Integer getPrefectureIdFrom() {
         return prefectureIdFrom;
     }
 
-    public void setPrefectureIdFrom(String prefectureIdFrom) {
+    public void setPrefectureIdFrom(Integer prefectureIdFrom) {
         this.prefectureIdFrom = prefectureIdFrom;
     }
 
-    public String getPrefectureIdTo() {
+    public Integer getPrefectureIdTo() {
         return prefectureIdTo;
     }
 
-    public void setPrefectureIdTo(String prefectureIdTo) {
+    public void setPrefectureIdTo(Integer prefectureIdTo) {
         this.prefectureIdTo = prefectureIdTo;
     }
 

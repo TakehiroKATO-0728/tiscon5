@@ -141,13 +141,7 @@ public class EstimateController {
         return "result";
     }
     private List<Prefecture> getAllPrefectures() {
-        ArrayList<Prefecture> list = new ArrayList<>();
-        Prefecture prefecture = new Prefecture();
-        prefecture.setPrefectureId("");
-        prefecture.setPrefectureName("選択してください");
-        list.add(prefecture);
-        list.addAll(estimateDAO.getAllPrefectures());
-        return list;
+        return (estimateDAO.getAllPrefectures());
     }
     /**
      * 申し込み完了画面に遷移する。

@@ -23,14 +23,14 @@ public class UserOrderForm {
     @NotBlank
     private String email;
 
-    @NotBlank
-    private String oldPrefectureId;
+    @NotNull
+    private Integer oldPrefectureId;
 
     @NotBlank
     private String oldAddress;
 
-    @NotBlank
-    private String newPrefectureId;
+    @NotNull
+    private Integer newPrefectureId;
 
     @NotBlank
     private String newAddress;
@@ -78,11 +78,11 @@ public class UserOrderForm {
         this.email = email;
     }
 
-    public String getOldPrefectureId() {
+    public Integer getOldPrefectureId() {
         return oldPrefectureId;
     }
 
-    public void setOldPrefectureId(String oldPrefectureId) {
+    public void setOldPrefectureId(Integer oldPrefectureId) {
         this.oldPrefectureId = oldPrefectureId;
     }
 
@@ -94,11 +94,11 @@ public class UserOrderForm {
         this.oldAddress = oldAddress;
     }
 
-    public String getNewPrefectureId() {
+    public Integer getNewPrefectureId() {
         return newPrefectureId;
     }
 
-    public void setNewPrefectureId(String newPrefectureId) {
+    public void setNewPrefectureId(Integer newPrefectureId) {
         this.newPrefectureId = newPrefectureId;
     }
 

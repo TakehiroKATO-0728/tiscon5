@@ -7,11 +7,11 @@ public class UserOrderDto {
 
     private String email;
 
-    private String oldPrefectureId;
+    private Integer oldPrefectureId;
 
     private String oldAddress;
 
-    private String newPrefectureId;
+    private Integer newPrefectureId;
 
     private String newAddress;
 
@@ -49,11 +49,11 @@ public class UserOrderDto {
         this.email = email;
     }
 
-    public String getOldPrefectureId() {
+    public Integer getOldPrefectureId() {
         return oldPrefectureId;
     }
 
-    public void setOldPrefectureId(String oldPrefectureId) {
+    public void setOldPrefectureId(Integer oldPrefectureId) {
         this.oldPrefectureId = oldPrefectureId;
     }
 
@@ -65,11 +65,11 @@ public class UserOrderDto {
         this.oldAddress = oldAddress;
     }
 
-    public String getNewPrefectureId() {
+    public Integer getNewPrefectureId() {
         return newPrefectureId;
     }
 
-    public void setNewPrefectureId(String newPrefectureId) {
+    public void setNewPrefectureId(Integer newPrefectureId) {
         this.newPrefectureId = newPrefectureId;
     }
 
